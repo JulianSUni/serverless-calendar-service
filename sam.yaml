@@ -1,0 +1,51 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: AWS Serverless Spring Boot API - Refactoring Cloud Migration Strategy
+Globals:
+  Api:
+    EndpointConfiguration: REGIONAL
+
+Resources:
+  CalendarServiceFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: bookapp.StreamLambdaHandler::handleRequest
+      Runtime: java11
+      CodeUri: target/book-service-1.0-SNAPSHOT-lambda-package.zip
+      MemorySize: 1024
+      Policies: AWSLambdaBasicExecutionRole
+      Timeout: 30
+      Events:
+        GetResource:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: any
+        GetCalendarEvents:
+          Type: Api
+          Properties:
+            Path: /showCalendarEvents
+            Method: GET
+        AddCalendarEvent:
+          Type: Api
+          Properties:
+            Path: /addCalendarEvent
+            Method: POST
+        UpdateCalendarEvent:
+          Type: Api
+          Properties:
+            Path: /updateEvent/{calendarEventId}
+            Method: PUT
+        DeleteCalendarEvent:
+          Type: Api
+          Properties:
+            Path: /deleteEvent/{id}
+            Method: DELETE
+
+# Optional, Outputs sind Ausgabewerte, die in andere Stacks importiert werden können zur übergreifenden Referenzierung
+Outputs:
+  BookServiceApi:
+    Description: URL for application
+    Value: !Sub 'https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/ping'
+    Export:
+      Name: BookServiceApi

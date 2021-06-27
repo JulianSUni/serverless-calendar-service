@@ -1,0 +1,7 @@
+/Users/julianstier/repositories/book-service/src/main/java/springserverless/service/ICalendarEventService.java
+/Users/julianstier/repositories/book-service/src/main/java/springserverless/Application.java
+/Users/julianstier/repositories/book-service/src/main/java/springserverless/model/CalendarEvent.java
+/Users/julianstier/repositories/book-service/src/main/java/springserverless/repository/CalendarEventRepository.java
+/Users/julianstier/repositories/book-service/src/main/java/springserverless/controller/PingController.java
+/Users/julianstier/repositories/book-service/src/main/java/springserverless/service/CalendarEventService.java
+/Users/julianstier/repositories/book-service/src/main/java/springserverless/StreamLambdaHandler.java
